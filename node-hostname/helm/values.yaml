@@ -1,0 +1,38 @@
+# Docker image configurations
+image:
+  repository: "116981782903.dkr.ecr.eu-north-1.amazonaws.com/node-hostname"
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+# Application settings
+app:
+  name: "node-hostname"
+  containerPort: 3000
+  replicas: 2
+
+# Service settings
+service:
+  type: NodePort # Can be ClusterIP, NodePort, or LoadBalancer
+  port: 80
+  targetPort: 3000
+
+# Ingress settings
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+  hosts:
+    - paths:
+        - "/"
+
+# Resource requests and limits (optional)
+resources:
+  requests:
+    memory: "64Mi"
+    cpu: "250m"
+  limits:
+    memory: "128Mi"
+    cpu: "500m"
