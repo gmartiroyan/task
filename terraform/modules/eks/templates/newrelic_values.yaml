@@ -1,0 +1,15 @@
+newrelic-infrastructure:
+  integrations:
+    nri-nginx:
+      discovery:
+        command:
+          exec: /var/db/newrelic-infra/nri-discovery-kubernetes --tls --port 10250
+          match:
+            label.app: nginx
+      integrations:
+        - name: nri-nginx
+          env:
+           STATUS_URL: http://$${discovery.ip}/stub_status
+           STATUS_MODULE: discover
+           METRICS: 1
+           REMOTE_MONITORING: 1
