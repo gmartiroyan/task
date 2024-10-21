@@ -43,10 +43,9 @@ The Kubernetes infrastructure is deployed in AWS using Terraform. This includes 
    terraform plan
    terraform apply
 This will prompt for confirmation. After confirming, Terraform will deploy the AWS infrastructure.
-4. Once the infrastructure is provisioned, configure kubectl to interact with the new EKS cluster:
+4. Once the infrastructure is provisioned, configure kubectl to interact with the new EKS cluster: 
    ```
    aws eks --region <region-name> update-kubeconfig --name <eks-cluster-name>
-
 
 ## Application Deployment
 ### Dockerfile
