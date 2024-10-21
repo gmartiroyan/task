@@ -19,7 +19,6 @@ The application is deployed using semantic versioning, where each release create
 - [CI/CD Pipeline](#cicd-pipeline)
 - [Helm Chart Usage](#helm-chart-usage)
 - [Accessing the Application](#accessing-the-application)
-- [Rollback Mechanism](#rollback-mechanism)
 
 ## Pre-requisites
 
