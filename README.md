@@ -42,11 +42,13 @@ The Kubernetes infrastructure is deployed in AWS using Terraform. This includes 
    terraform init
    terraform plan
    terraform apply
+
 This will prompt for confirmation. After confirming, Terraform will deploy the AWS infrastructure.
+
 4. Once the infrastructure is provisioned, configure kubectl to interact with the new EKS cluster: 
    ```
    aws eks --region <region-name> update-kubeconfig --name <eks-cluster-name>
-
+   ```
 ## Application Deployment
 ### Dockerfile
 A Dockerfile is provided to containerize the Node.js application. It defines how the application is packaged into a Docker image.
@@ -93,6 +95,7 @@ The application is exposed using an AWS Load Balancer (ALB/NLB), and its public 
    kubectl get ingress -o wide
    NAME            CLASS    HOSTS   ADDRESS                                                                   PORTS   AGE
    node-hostname   <none>   *       k8s-default-nodehost-5858963695-1374566640.eu-north-1.elb.amazonaws.com   80      46h
+   ```
 2. Navigate to the Load Balancer's DNS name in your browser.
 ### Enabling HTTPS
 Optionally, HTTPS can be configured AWS ACM with a custom domain for public SSL certificates.
