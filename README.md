@@ -44,8 +44,9 @@ The Kubernetes infrastructure is deployed in AWS using Terraform. This includes 
    terraform apply
 This will prompt for confirmation. After confirming, Terraform will deploy the AWS infrastructure.
 4. Once the infrastructure is provisioned, configure kubectl to interact with the new EKS cluster:
-   ```bash
+   ```
    aws eks --region <region-name> update-kubeconfig --name <eks-cluster-name>
+
 
 ## Application Deployment
 ### Dockerfile
@@ -63,10 +64,10 @@ Helm is used for deploying the application in an atomic way, ensuring that faile
 ### CI/CD Pipeline
 The GitHub Actions pipeline automates the following tasks on creating a new GitHub release:
 
- - Build the Docker image from the Dockerfile.
- - Tag the Docker image using the release version (semantic versioning).
- - Push the image to AWS ECR.
- - Deploy the application to the EKS cluster using Helm.
+- Build the Docker image from the Dockerfile.
+- Tag the Docker image using the release version (semantic versioning).
+- Push the image to AWS ECR.
+- Deploy the application to the EKS cluster using Helm.
 
 ### Workflow File
 The GitHub Actions workflow file is located in `.github/workflows/deploy-node-hostname.yaml`. It defines the CI/CD pipeline, triggered on every new release on `main` branch.
@@ -80,11 +81,11 @@ If you need to rollback to a previous release version, simply rerun the CI/CD jo
 ### Values.yaml Example
 The following parameters can be customized in the values.yaml file:
 
- - Docker image repository and tag.
- - Application replica count.
- - Kubernetes service type (NodePort, LoadBalancer).
- - Ingress configurations.
- - Resource requests and limits 
+- Docker image repository and tag.
+- Application replica count.
+- Kubernetes service type (NodePort, LoadBalancer).
+- Ingress configurations.
+- Resource requests and limits
 ## Accessing the Application
 The application is exposed using an AWS Load Balancer (ALB/NLB), and its public DNS name can be used to access the app.
 ### How to Access:
