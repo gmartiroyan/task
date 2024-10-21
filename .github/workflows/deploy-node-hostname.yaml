@@ -49,4 +49,4 @@ jobs:
 
       - name: Deploy image to Amazon EKS
         run: |
-          helm upgrade --install --atomic  node-hostname ./node-hostname/helm/ --set image.tag=${{ github.event.release.tag_name }}
+          helm upgrade --install --atomic  node-hostname ./helm/ --set image.tag=${{ github.event.release.tag_name }}
